@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="SchoolModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="Classid" ColumnName="Classid" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="SchoolModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Classid" ColumnName="Classid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subjects">
+      <EntityTypeMapping TypeName="SchoolModel.subject">
+        <MappingFragment StoreEntitySet="subject">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="classId" ColumnName="classId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="SchoolModel.Store.fn_Classlist" FunctionImportName="fn_Classlist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.fn_Classlist_Result">
+          <ScalarProperty Name="Classid" ColumnName="Classid" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="SchoolModel.Store.fn_Studentslist" FunctionImportName="fn_Studentslist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.fn_Studentslist_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Classid" ColumnName="Classid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="SchoolModel.Store.fn_Subjectslist" FunctionImportName="fn_Subjectslist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.fn_Subjectslist_Result">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="classId" ColumnName="classId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DeleteClass" FunctionName="SchoolModel.Store.sp_DeleteClass" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteStudents" FunctionName="SchoolModel.Store.sp_DeleteStudents" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteSubjects" FunctionName="SchoolModel.Store.sp_DeleteSubjects" />
+    <FunctionImportMapping FunctionImportName="sp_FindClass" FunctionName="SchoolModel.Store.sp_FindClass" />
+    <FunctionImportMapping FunctionImportName="sp_FindStudents" FunctionName="SchoolModel.Store.sp_FindStudents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.sp_FindStudents_Result">
+          <ScalarProperty Name="classId" ColumnName="classId" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FindSubjects" FunctionName="SchoolModel.Store.sp_FindSubjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.sp_FindSubjects_Result">
+          <ScalarProperty Name="classId" ColumnName="classId" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_UpdateClass" FunctionName="SchoolModel.Store.sp_UpdateClass" />
+    <FunctionImportMapping FunctionImportName="sp_UpdateStudents" FunctionName="SchoolModel.Store.sp_UpdateStudents" />
+    <FunctionImportMapping FunctionImportName="sp_UpdateSubjects" FunctionName="SchoolModel.Store.sp_UpdateSubjects" />
+  </EntityContainerMapping>
+</Mapping>

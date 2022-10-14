@@ -1,0 +1,12 @@
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\DAL_School.dll.config
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\DAL_School.dll
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\DAL_School.pdb
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\EntityFramework.dll
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\EntityFramework.SqlServer.dll
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\EntityFramework.xml
+E:\Repos\SchoolWebForm\DAL_School\bin\Debug\EntityFramework.SqlServer.xml
+E:\Repos\SchoolWebForm\DAL_School\obj\Debug\DAL_School.csproj.AssemblyReference.cache
+E:\Repos\SchoolWebForm\DAL_School\obj\Debug\DAL_School.csproj.CoreCompileInputs.cache
+E:\Repos\SchoolWebForm\DAL_School\obj\Debug\DAL_School.csproj.CopyComplete
+E:\Repos\SchoolWebForm\DAL_School\obj\Debug\DAL_School.dll
+E:\Repos\SchoolWebForm\DAL_School\obj\Debug\DAL_School.pdb

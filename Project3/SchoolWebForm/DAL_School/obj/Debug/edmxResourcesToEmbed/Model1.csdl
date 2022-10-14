@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_Classlist_Result">
+    <Property Name="Classid" Type="Int32" Nullable="false" />
+    <Property Name="ClassName" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="fn_Studentslist_Result">
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="Classid" Type="Int32" />
+  </ComplexType>
+  <ComplexType Name="fn_Subjectslist_Result">
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="classId" Type="Int32" />
+  </ComplexType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="Classid" />
+    </Key>
+    <Property Name="Classid" Type="Int32" Nullable="false" />
+    <Property Name="ClassName" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK__Student__Classid__3C69FB99" FromRole="Class" ToRole="Student" />
+    <NavigationProperty Name="subjects" Relationship="Self.FK__subject__classId__3B75D760" FromRole="Class" ToRole="subject" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="Classid" Type="Int32" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__Student__Classid__3C69FB99" FromRole="Student" ToRole="Class" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="classId" Type="Int32" />
+    <NavigationProperty Name="Class" Relationship="Self.FK__subject__classId__3B75D760" FromRole="subject" ToRole="Class" />
+  </EntityType>
+  <Association Name="FK__Student__Classid__3C69FB99">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Classid" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Classid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__subject__classId__3B75D760">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="subject" Type="Self.subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Classid" />
+      </Principal>
+      <Dependent Role="subject">
+        <PropertyRef Name="classId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classes" EntityType="Self.Class" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="subjects" EntityType="Self.subject" />
+    <AssociationSet Name="FK__Student__Classid__3C69FB99" Association="Self.FK__Student__Classid__3C69FB99">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__subject__classId__3B75D760" Association="Self.FK__subject__classId__3B75D760">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="subject" EntitySet="subjects" />
+    </AssociationSet>
+    <FunctionImport Name="fn_Classlist" IsComposable="true" ReturnType="Collection(SchoolModel.fn_Classlist_Result)" />
+    <FunctionImport Name="fn_Studentslist" IsComposable="true" ReturnType="Collection(SchoolModel.fn_Studentslist_Result)" />
+    <FunctionImport Name="fn_Subjectslist" IsComposable="true" ReturnType="Collection(SchoolModel.fn_Subjectslist_Result)" />
+    <FunctionImport Name="sp_DeleteClass">
+      <Parameter Name="p_classid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DeleteStudents">
+      <Parameter Name="p_studentid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DeleteSubjects">
+      <Parameter Name="p_subjectid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_FindClass">
+      <Parameter Name="p_classid" Mode="In" Type="Int32" />
+      <Parameter Name="p_classname" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_FindStudents" ReturnType="Collection(SchoolModel.sp_FindStudents_Result)">
+      <Parameter Name="p_studentid" Mode="In" Type="Int32" />
+      <Parameter Name="p_classid" Mode="InOut" Type="Int32" />
+      <Parameter Name="p_studentname" Mode="InOut" Type="String" />
+      <Parameter Name="p_address" Mode="InOut" Type="String" />
+      <Parameter Name="p_email" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_FindSubjects" ReturnType="Collection(SchoolModel.sp_FindSubjects_Result)">
+      <Parameter Name="p_subjectid" Mode="In" Type="Int32" />
+      <Parameter Name="p_classid" Mode="InOut" Type="Int32" />
+      <Parameter Name="p_subjectname" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdateClass">
+      <Parameter Name="p_classid" Mode="In" Type="Int32" />
+      <Parameter Name="p_classname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdateStudents">
+      <Parameter Name="p_studentid" Mode="In" Type="Int32" />
+      <Parameter Name="p_classid" Mode="In" Type="Int32" />
+      <Parameter Name="p_studentname" Mode="In" Type="String" />
+      <Parameter Name="addres" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdateSubjects">
+      <Parameter Name="p_subjectid" Mode="In" Type="Int32" />
+      <Parameter Name="p_classid" Mode="In" Type="Int32" />
+      <Parameter Name="p_subjectname" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_FindStudents_Result">
+    <Property Type="Int32" Name="classId" Nullable="true" />
+    <Property Type="String" Name="StudentName" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="75" />
+  </ComplexType>
+  <ComplexType Name="sp_FindSubjects_Result">
+    <Property Type="Int32" Name="classId" Nullable="true" />
+    <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Classid" />
+          </Key>
+          <Property Name="Classid" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="75" />
+          <Property Name="Classid" Type="int" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="SubjectName" Type="varchar" MaxLength="50" />
+          <Property Name="classId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Student__Classid__3C69FB99">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject__classId__3B75D760">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="subject" Type="Self.subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="subject">
+              <PropertyRef Name="classId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_Classlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Classid" Type="int" Nullable="false" />
+                <Property Name="ClassName" Type="varchar" MaxLength="5" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_Studentslist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="StudentId" Type="int" Nullable="false" />
+                <Property Name="StudentName" Type="varchar" MaxLength="30" />
+                <Property Name="Address" Type="varchar" MaxLength="100" />
+                <Property Name="Email" Type="varchar" MaxLength="75" />
+                <Property Name="Classid" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_Subjectslist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="SubjectId" Type="int" Nullable="false" />
+                <Property Name="SubjectName" Type="varchar" MaxLength="50" />
+                <Property Name="classId" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="sp_DeleteClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_classid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_studentid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_subjectid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_FindClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_classid" Type="int" Mode="In" />
+          <Parameter Name="p_classname" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_FindStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_studentid" Type="int" Mode="In" />
+          <Parameter Name="p_classid" Type="int" Mode="InOut" />
+          <Parameter Name="p_studentname" Type="varchar" Mode="InOut" />
+          <Parameter Name="p_address" Type="varchar" Mode="InOut" />
+          <Parameter Name="p_email" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_FindSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_subjectid" Type="int" Mode="In" />
+          <Parameter Name="p_classid" Type="int" Mode="InOut" />
+          <Parameter Name="p_subjectname" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_UpdateClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_classid" Type="int" Mode="In" />
+          <Parameter Name="p_classname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdateStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_studentid" Type="int" Mode="In" />
+          <Parameter Name="p_classid" Type="int" Mode="In" />
+          <Parameter Name="p_studentname" Type="varchar" Mode="In" />
+          <Parameter Name="addres" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdateSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_subjectid" Type="int" Mode="In" />
+          <Parameter Name="p_classid" Type="int" Mode="In" />
+          <Parameter Name="p_subjectname" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="SchoolModelStoreContainer">
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Student__Classid__3C69FB99" Association="Self.FK__Student__Classid__3C69FB99">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject__classId__3B75D760" Association="Self.FK__subject__classId__3B75D760">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="subject" EntitySet="subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="fn_Classlist_Result">
+          <Property Name="Classid" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="fn_Studentslist_Result">
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="Classid" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="fn_Subjectslist_Result">
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classId" Type="Int32" />
+        </ComplexType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Classid" />
+          </Key>
+          <Property Name="Classid" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__Classid__3C69FB99" FromRole="Class" ToRole="Student" />
+          <NavigationProperty Name="subjects" Relationship="Self.FK__subject__classId__3B75D760" FromRole="Class" ToRole="subject" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="Classid" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__Student__Classid__3C69FB99" FromRole="Student" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classId" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__subject__classId__3B75D760" FromRole="subject" ToRole="Class" />
+        </EntityType>
+        <Association Name="FK__Student__Classid__3C69FB99">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject__classId__3B75D760">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="subject" Type="Self.subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Classid" />
+            </Principal>
+            <Dependent Role="subject">
+              <PropertyRef Name="classId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="subjects" EntityType="Self.subject" />
+          <AssociationSet Name="FK__Student__Classid__3C69FB99" Association="Self.FK__Student__Classid__3C69FB99">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject__classId__3B75D760" Association="Self.FK__subject__classId__3B75D760">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="subject" EntitySet="subjects" />
+          </AssociationSet>
+          <FunctionImport Name="fn_Classlist" IsComposable="true" ReturnType="Collection(SchoolModel.fn_Classlist_Result)" />
+          <FunctionImport Name="fn_Studentslist" IsComposable="true" ReturnType="Collection(SchoolModel.fn_Studentslist_Result)" />
+          <FunctionImport Name="fn_Subjectslist" IsComposable="true" ReturnType="Collection(SchoolModel.fn_Subjectslist_Result)" />
+          <FunctionImport Name="sp_DeleteClass">
+            <Parameter Name="p_classid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteStudents">
+            <Parameter Name="p_studentid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteSubjects">
+            <Parameter Name="p_subjectid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FindClass">
+            <Parameter Name="p_classid" Mode="In" Type="Int32" />
+            <Parameter Name="p_classname" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FindStudents" ReturnType="Collection(SchoolModel.sp_FindStudents_Result)">
+            <Parameter Name="p_studentid" Mode="In" Type="Int32" />
+            <Parameter Name="p_classid" Mode="InOut" Type="Int32" />
+            <Parameter Name="p_studentname" Mode="InOut" Type="String" />
+            <Parameter Name="p_address" Mode="InOut" Type="String" />
+            <Parameter Name="p_email" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FindSubjects" ReturnType="Collection(SchoolModel.sp_FindSubjects_Result)">
+            <Parameter Name="p_subjectid" Mode="In" Type="Int32" />
+            <Parameter Name="p_classid" Mode="InOut" Type="Int32" />
+            <Parameter Name="p_subjectname" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateClass">
+            <Parameter Name="p_classid" Mode="In" Type="Int32" />
+            <Parameter Name="p_classname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateStudents">
+            <Parameter Name="p_studentid" Mode="In" Type="Int32" />
+            <Parameter Name="p_classid" Mode="In" Type="Int32" />
+            <Parameter Name="p_studentname" Mode="In" Type="String" />
+            <Parameter Name="addres" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateSubjects">
+            <Parameter Name="p_subjectid" Mode="In" Type="Int32" />
+            <Parameter Name="p_classid" Mode="In" Type="Int32" />
+            <Parameter Name="p_subjectname" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_FindStudents_Result">
+          <Property Type="Int32" Name="classId" Nullable="true" />
+          <Property Type="String" Name="StudentName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="75" />
+        </ComplexType>
+        <ComplexType Name="sp_FindSubjects_Result">
+          <Property Type="Int32" Name="classId" Nullable="true" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="SchoolModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SchoolModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjects">
+            <EntityTypeMapping TypeName="SchoolModel.subject">
+              <MappingFragment StoreEntitySet="subject">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="SchoolModel.Store.fn_Classlist" FunctionImportName="fn_Classlist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.fn_Classlist_Result">
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="SchoolModel.Store.fn_Studentslist" FunctionImportName="fn_Studentslist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.fn_Studentslist_Result">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Classid" ColumnName="Classid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="SchoolModel.Store.fn_Subjectslist" FunctionImportName="fn_Subjectslist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.fn_Subjectslist_Result">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DeleteClass" FunctionName="SchoolModel.Store.sp_DeleteClass" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteStudents" FunctionName="SchoolModel.Store.sp_DeleteStudents" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteSubjects" FunctionName="SchoolModel.Store.sp_DeleteSubjects" />
+          <FunctionImportMapping FunctionImportName="sp_FindClass" FunctionName="SchoolModel.Store.sp_FindClass" />
+          <FunctionImportMapping FunctionImportName="sp_FindStudents" FunctionName="SchoolModel.Store.sp_FindStudents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.sp_FindStudents_Result">
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FindSubjects" FunctionName="SchoolModel.Store.sp_FindSubjects">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.sp_FindSubjects_Result">
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UpdateClass" FunctionName="SchoolModel.Store.sp_UpdateClass" />
+          <FunctionImportMapping FunctionImportName="sp_UpdateStudents" FunctionName="SchoolModel.Store.sp_UpdateStudents" />
+          <FunctionImportMapping FunctionImportName="sp_UpdateSubjects" FunctionName="SchoolModel.Store.sp_UpdateSubjects" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

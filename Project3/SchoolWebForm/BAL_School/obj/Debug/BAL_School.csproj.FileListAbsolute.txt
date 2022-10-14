@@ -1,0 +1,15 @@
+E:\Repos\SchoolWebForm\BAL_School\obj\Debug\BAL_School.csproj.AssemblyReference.cache
+E:\Repos\SchoolWebForm\BAL_School\obj\Debug\BAL_School.csproj.CoreCompileInputs.cache
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\BAL_School.dll.config
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\BAL_School.dll
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\BAL_School.pdb
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\DAL_School.dll
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\EntityFramework.dll
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\EntityFramework.SqlServer.dll
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\DAL_School.pdb
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\DAL_School.dll.config
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\EntityFramework.xml
+E:\Repos\SchoolWebForm\BAL_School\bin\Debug\EntityFramework.SqlServer.xml
+E:\Repos\SchoolWebForm\BAL_School\obj\Debug\BAL_School.csproj.CopyComplete
+E:\Repos\SchoolWebForm\BAL_School\obj\Debug\BAL_School.dll
+E:\Repos\SchoolWebForm\BAL_School\obj\Debug\BAL_School.pdb
