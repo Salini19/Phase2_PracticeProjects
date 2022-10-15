@@ -1,0 +1,15 @@
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\Bal_Schoolwebapi.dll
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\Bal_Schoolwebapi.pdb
+E:\Repos\School_WebApi\Bal_Schoolwebapi\obj\Debug\Bal_Schoolwebapi.csproj.AssemblyReference.cache
+E:\Repos\School_WebApi\Bal_Schoolwebapi\obj\Debug\Bal_Schoolwebapi.csproj.CoreCompileInputs.cache
+E:\Repos\School_WebApi\Bal_Schoolwebapi\obj\Debug\Bal_Schoolwebapi.dll
+E:\Repos\School_WebApi\Bal_Schoolwebapi\obj\Debug\Bal_Schoolwebapi.pdb
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\DAL_SchoolWebapi.dll
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\DAL_SchoolWebapi.pdb
+E:\Repos\School_WebApi\Bal_Schoolwebapi\obj\Debug\Bal_Schoolwebapi.csproj.CopyComplete
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\Bal_Schoolwebapi.dll.config
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\EntityFramework.dll
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\EntityFramework.SqlServer.dll
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\DAL_SchoolWebapi.dll.config
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\EntityFramework.xml
+E:\Repos\School_WebApi\Bal_Schoolwebapi\bin\Debug\EntityFramework.SqlServer.xml

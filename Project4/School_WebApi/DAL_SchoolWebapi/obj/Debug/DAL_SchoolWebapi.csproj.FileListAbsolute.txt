@@ -1,0 +1,12 @@
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\DAL_SchoolWebapi.dll
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\DAL_SchoolWebapi.pdb
+E:\Repos\School_WebApi\DAL_SchoolWebapi\obj\Debug\DAL_SchoolWebapi.csproj.AssemblyReference.cache
+E:\Repos\School_WebApi\DAL_SchoolWebapi\obj\Debug\DAL_SchoolWebapi.csproj.CoreCompileInputs.cache
+E:\Repos\School_WebApi\DAL_SchoolWebapi\obj\Debug\DAL_SchoolWebapi.dll
+E:\Repos\School_WebApi\DAL_SchoolWebapi\obj\Debug\DAL_SchoolWebapi.pdb
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\DAL_SchoolWebapi.dll.config
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\EntityFramework.dll
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\EntityFramework.SqlServer.dll
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\EntityFramework.xml
+E:\Repos\School_WebApi\DAL_SchoolWebapi\bin\Debug\EntityFramework.SqlServer.xml
+E:\Repos\School_WebApi\DAL_SchoolWebapi\obj\Debug\DAL_SchoolWebapi.csproj.CopyComplete

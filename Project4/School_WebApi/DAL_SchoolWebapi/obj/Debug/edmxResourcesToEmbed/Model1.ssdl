@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="Classid" />
+    </Key>
+    <Property Name="Classid" Type="int" Nullable="false" />
+    <Property Name="ClassName" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="StudentName" Type="varchar" MaxLength="30" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="75" />
+    <Property Name="Classid" Type="int" />
+    <Property Name="subject" Type="varchar" MaxLength="30" />
+    <Property Name="Marks" Type="numeric" Precision="4" Scale="2" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+    <Property Name="SubjectName" Type="varchar" MaxLength="50" />
+    <Property Name="classId" Type="int" />
+  </EntityType>
+  <Association Name="FK__Student__Classid__3C69FB99">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Classid" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Classid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__subject__classId__3B75D760">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="subject" Type="Self.subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Classid" />
+      </Principal>
+      <Dependent Role="subject">
+        <PropertyRef Name="classId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SchoolModelStoreContainer">
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Student__Classid__3C69FB99" Association="Self.FK__Student__Classid__3C69FB99">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__subject__classId__3B75D760" Association="Self.FK__subject__classId__3B75D760">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="subject" EntitySet="subject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
